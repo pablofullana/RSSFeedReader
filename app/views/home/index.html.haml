@@ -1,7 +1,8 @@
 Welcome 
 
 - if user_signed_in?
-	= current_user.email + ", hope you are doing fine."
+	= current_user.email + ", hope you are doing fine. Here is your"
+	= link_to 'profile', edit_user_registration_path
 	%br
 	%br
 	= link_to 'Logout', destroy_user_session_path, :method => 'delete'
