@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml'
 gem 'haml-rails'
 
+# Use devise for users administration
+gem 'devise'
+
 # Development and test gems
 group :development, :test do
   gem 'sqlite3'
@@ -36,6 +39,7 @@ group :development, :test do
   gem 'debugger'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'simplecov'
 end
 
