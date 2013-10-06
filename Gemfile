@@ -29,11 +29,15 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml'
 gem 'haml-rails'
 
-# to convert html to haml
+# To convert html to haml
 gem 'html2haml'
 
 # Use devise for users administration
 gem 'devise'
+
+# Google OAuth2
+gem 'omniauth-google-oauth2'
+
 
 # Development and test gems
 group :development, :test do

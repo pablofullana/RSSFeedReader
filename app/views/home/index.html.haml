@@ -13,4 +13,7 @@ Welcome
 	%br
 	Already a member? 
 	= link_to 'Please login', new_user_session_path
+	%br
+	%br
+	= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
 

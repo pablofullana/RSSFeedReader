@@ -3,8 +3,27 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable,
+         :omniauthable, :omniauth_providers => [:google_oauth2]
 
   validates :login, :first_name, :last_name, presence: true, length: { maximum: 50 }
   
+  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+  	data = access_token.info
+    user = User.where(:email => data["email"]).first
+
+    unless user
+    	# I'll use the email as the "login" value and split "name" in "first name" and "last name"
+        user = User.create(login: data["email"],
+        			first_name: data["name"].split(" ")[0],
+        			last_name: data["name"].split(" ")[1],
+	    		   	email: data["email"],
+	    		   	password: Devise.friendly_token[0,20],
+	    		   	# avoid confirmation
+	    		   	confirmed_at: Time.now
+	    		  )
+    end
+    user
+  end
+
 end
