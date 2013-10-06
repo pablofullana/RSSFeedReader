@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml'
 gem 'haml-rails'
 
+# to convert html to haml
+gem 'html2haml'
+
 # Use devise for users administration
 gem 'devise'
 
