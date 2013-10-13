@@ -1,0 +1,12 @@
+= nav_bar :fixed => :top, :brand => "RSSFeedReader", :responsive => true do
+  = menu_group do
+    = menu_item "Home", root_path
+    = menu_divider
+    = drop_down "Channels" do
+      = menu_item "Exanmle Channel 1"
+      = menu_item "Example Channel 2"
+  = menu_group :pull => :right do
+    - if current_user
+      = drop_down current_user.login do
+        = menu_item "Profile", edit_user_registration_path
+        = menu_item 'Logout', destroy_user_session_path, :data => { :confirm => "Are you sure?" }, :method => 'delete'

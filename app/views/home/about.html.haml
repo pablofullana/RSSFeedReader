@@ -1,0 +1,15 @@
+.row
+  .span4.offset4
+    .well
+      %legend Sign in to WebApp
+      %form{"accept-charset" => "UTF-8", action: "", method: "POST"}
+        - if alert
+          .alert.alert-error
+            %a.close{"data-dismiss" => "alert", href: "#"}> x
+            Incorrect Username or Password!
+        %input.span3{name: "username", placeholder: "Username", type: "text"}/
+        %input.span3{name: "password", placeholder: "Password", type: "password"}/
+        %label.checkbox
+          %input{name: "remember", type: "checkbox", value: "1"}/
+          Remember Me
+        %button.btn-info.btn{type: "submit"} Login
