@@ -9,6 +9,12 @@ RSSFeed::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  # cucumber paths
+  devise_scope :user do
+    match '/users/sign_up', to: 'devise/registrations#create', via: :post
+    match '/users/edit', to: 'devise/registrations#update', via: :post
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

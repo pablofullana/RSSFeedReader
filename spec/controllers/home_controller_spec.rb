@@ -4,14 +4,14 @@ describe HomeController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index'
+      visit root_path
       response.should be_success
     end
   end
 
   describe "GET 'about'" do
     it "returns http success" do
-      get 'about'
+      visit home_about_path
       response.should be_success
     end
   end

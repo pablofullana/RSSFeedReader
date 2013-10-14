@@ -59,7 +59,7 @@ end
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '< 1.1.0'       # a higher one breaks sqlite3 tests
   gem 'capybara'
   gem 'email_spec'
 end

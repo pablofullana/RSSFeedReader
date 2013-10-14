@@ -50,4 +50,18 @@ RSpec.configure do |config|
   # this will enable the visit function for specs
   config.include Capybara::DSL
 
+  # devise
+  config.include Devise::TestHelpers, :type => :controller
+
+  # database cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 end

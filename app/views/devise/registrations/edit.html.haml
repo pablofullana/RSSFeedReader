@@ -8,22 +8,22 @@
         = devise_error_messages!
         %form{"accept-charset" => "UTF-8", action: "", method: "POST"}
           = f.label :login
-          = f.text_field :login, placeholder: "Login", :autofocus => true
+          = f.text_field :login, placeholder: "Login", :autofocus => true, :id => 'login'
           = f.label :first_name
-          = f.text_field :first_name, placeholder: "First Name"
+          = f.text_field :first_name, placeholder: "First Name", :id => 'first_name'
           = f.label :last_name
-          = f.text_field :last_name, placeholder: "Last Name"
+          = f.text_field :last_name, placeholder: "Last Name", :id => 'last_name'
           = f.label :email
-          = f.email_field :email, placeholder: "Email"
+          = f.email_field :email, placeholder: "Email", :id => 'email'
           - if devise_mapping.confirmable? && resource.pending_reconfirmation?
             %div
               Currently waiting confirmation for: #{resource.unconfirmed_email}
           = f.label :new_password
-          = f.password_field :password, placeholder: "New Password"
+          = f.password_field :password, placeholder: "New Password", :id => 'new_password'
           = f.label :new_password_confirmation
-          = f.password_field :password_confirmation, placeholder: "New Password Confirmation"
+          = f.password_field :password_confirmation, placeholder: "New Password Confirmation", :id => 'new_password_confirmation'
           = f.label :current_password
-          = f.password_field :current_password, placeholder: "Current Password"
+          = f.password_field :current_password, placeholder: "Current Password", :id => 'current_password'
           %br
           %button.btn-info.btn{type: "submit"} Update
 .row
