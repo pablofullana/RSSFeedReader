@@ -43,4 +43,20 @@ describe User do
     new_user(:login => 'foobar', :password => 'secretpassword').save!
     User.authenticate('foobar', 'badpassword').should be_false
   end
+
+  it "should respond to channels" do
+    new_user.should respond_to(:channels)
+  end
+
+  it "should destroy associated channels" do
+    user = FactoryGirl.create(:user)
+    channels = FactoryGirl.create(:channel, user: user)
+    channels = user.channels.to_a
+    user.destroy
+    expect(channels).not_to be_empty
+    channels.each do |channel|
+      expect(Channel.where(id: channel.id)).to be_empty
+    end
+  end
+
 end

@@ -1,8 +1,12 @@
 RSSFeed::Application.routes.draw do
-  get "home/about"
+
+  resources :channels
+
+  get 'home/about'
+  get 'home/index'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

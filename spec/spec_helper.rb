@@ -52,6 +52,7 @@ RSpec.configure do |config|
 
   # devise
   config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
 
   # database cleaner
   config.before(:suite) do
