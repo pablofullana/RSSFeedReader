@@ -8,12 +8,12 @@
 
   .field
     = f.label :url
-    = f.text_field :url
+    = f.text_field :url, :placeholder => "URL", :autofocus => true
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, :placeholder => "Name"
   .field
     = f.label :user_id
-    = f.number_field :user_id
+    = f.number_field :user_id, :value => current_user.id, :readonly => true
   .actions
     = f.submit 'Save'
