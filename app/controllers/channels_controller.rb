@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
 
+  # will only let signed in users pass through
   before_filter :authorize
 
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
@@ -76,6 +77,7 @@ class ChannelsController < ApplicationController
       params.require(:channel).permit(:url, :name, :user_id)
     end
 
+    # checks if the user is signed in
     def authorize
       if !user_signed_in?
         redirect_to new_user_session_path

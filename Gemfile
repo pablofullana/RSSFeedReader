@@ -29,7 +29,6 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-
 # Use haml for html markup
 gem 'haml'
 gem 'haml-rails'
