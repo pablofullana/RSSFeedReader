@@ -1,19 +1,23 @@
-= form_for @channel do |f|
-  - if @channel.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@channel.errors.count, "error")} prohibited this channel from being saved:"
+.row
+  .span4.offset4
+    .well
+      - if alert
+        .alert.alert-error= alert
+      - if notice
+        .alert= notice
+      %legend= @title
       %ul
         - @channel.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :url
-    = f.text_field :url, :placeholder => "URL", :autofocus => true
-  .field
-    = f.label :name
-    = f.text_field :name, :placeholder => "Name"
-  .field
-    = f.label :user_id
-    = f.number_field :user_id, :value => current_user.id, :readonly => true
-  .actions
-    = f.submit 'Save'
+      = form_for @channel do |f|
+        %form{"accept-charset" => "UTF-8", action: "", method: "POST"}
+          .hidden_field
+            = f.hidden_field :user_id, :value => current_user.id, :readonly => true
+          .field
+            = f.label :name
+            = f.text_field :name, placeholder: "Name", :autofocus => true
+          .field
+            = f.label :url
+            = f.text_field :url, placeholder: "Url"
+          %br
+          %button.btn-success.btn{type: "submit", id: "Save"} Save

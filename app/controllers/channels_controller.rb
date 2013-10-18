@@ -19,10 +19,12 @@ class ChannelsController < ApplicationController
   # GET /channels/new
   def new
     @channel = Channel.new
+    @title = "New channel"
   end
 
   # GET /channels/1/edit
   def edit
+    @title = "Edit channel"
   end
 
   # POST /channels

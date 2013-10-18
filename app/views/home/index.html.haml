@@ -1,2 +1,7 @@
 - if user_signed_in?
   = render "/shared/nav_bar"
+
+- if alert
+  .alert.alert-error= alert
+- if notice
+  .alert= notice

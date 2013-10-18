@@ -8,26 +8,24 @@ class Channel < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, :url, :name, presence: true
-  validate :valid_url, :valid_feed
+  validate :valid_feed
 
   
   private
 
-  def valid_url
-    begin
+  def valid_feed
+  	begin
   		res = Net::HTTP.get_response(URI.parse(url.to_s))
   		if res.code.to_i != 200
   			errors.add(:url, "Got code " + res.code.to_s)
+  		else
+  		  validator = W3C::FeedValidator.new()
+  		  validator.validate_url(url)
+  		  errors.add(:url, "is not a valid feed") unless validator.valid?
   		end
   	rescue
   		errors.add(:url, "is not valid")
   	end
-  end
-
-  def valid_feed
-  	validator = W3C::FeedValidator.new()
-  	validator.validate_url(url)
-  	errors.add(:url, "is not a valid feed " + validator.to_s) unless validator.valid?
   end
 
 end

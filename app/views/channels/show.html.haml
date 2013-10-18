@@ -1,3 +1,5 @@
+= render "/shared/nav_bar"
+
 %p#notice= notice
 
 %p
@@ -6,10 +8,5 @@
 %p
   %b Name:
   = @channel.name
-%p
-  %b User:
-  = @channel.user_id
 
 = link_to 'Edit', edit_channel_path(@channel)
-\|
-= link_to 'Back', channels_path

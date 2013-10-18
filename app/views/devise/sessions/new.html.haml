@@ -1,6 +1,10 @@
 .row
   .span4.offset4
     .well
+      - if alert
+        .alert.alert-error= alert
+      - if notice
+        .alert= notice
       %legend Sign in
       = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
         %form{"accept-charset" => "UTF-8", action: "", method: "POST"}

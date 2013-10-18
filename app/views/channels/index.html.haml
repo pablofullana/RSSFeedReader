@@ -1,23 +1,24 @@
-%h1 Listing channels
-
-%table
-  %tr
-    %th Url
-    %th Name
-    %th User
-    %th
-    %th
-    %th
-
-  - @channels.each do |channel|
-    %tr
-      %td= channel.url
-      %td= channel.name
-      %td= channel.user_id
-      %td= link_to 'Show', channel
-      %td= link_to 'Edit', edit_channel_path(channel)
-      %td= link_to 'Destroy', channel, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+= render "/shared/nav_bar"
 %br
-
-= link_to 'New Channel', new_channel_path
+%br
+%br
+.row
+  .span.offset3
+    %table.table.table-striped.table-condensed
+      %thead
+        %tr
+          %th{:style => "text-align:center;"} Channel
+          %th{:style => "text-align:center;"} Url
+          %th 
+          %th 
+      %tbody
+        - @channels.each do |channel|
+          %tr
+            %td= channel.name
+            %td= channel.url
+            %td
+              %a= link_to 'Show', channel_path(channel)
+            %td
+              %a= link_to 'Edit', edit_channel_path(channel)
+            %td
+              %a= link_to 'Remove', channel, :method => :delete, :data => { :confirm => 'Are you sure?' }
