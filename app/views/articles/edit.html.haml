@@ -1,0 +1,8 @@
+%h1 Editing article
+
+= form_for @article, url: channel_article_path, html: { method: :put } do |f|
+	= render 'form', f: f
+
+= link_to 'Show', channel_article_path(@article.channel_id, @article)
+\|
+= link_to 'Back', channel_articles_path

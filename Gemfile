@@ -42,6 +42,9 @@ gem 'devise'
 # Google OAuth2
 gem 'omniauth-google-oauth2'
 
+gem 'simple-rss'
+
+
 
 # Development and test gems
 group :development, :test do

@@ -6,6 +6,8 @@ require 'feed_validator'
 class Channel < ActiveRecord::Base
 	
   belongs_to :user
+  has_many :articles, dependent: :destroy
+  accepts_nested_attributes_for :articles
 
   validates :user_id, :url, :name, presence: true
   validate :valid_feed

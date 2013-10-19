@@ -1,12 +1,22 @@
 = render "/shared/nav_bar"
 
-%p#notice= notice
+- if alert
+  .alert.alert-error= alert
+- if notice
+  .alert= notice
 
-%p
-  %b Url:
-  = @channel.url
-%p
-  %b Name:
-  = @channel.name
+.well
 
-= link_to 'Edit', edit_channel_path(@channel)
+  %h4
+    %a{href: "#"}= @channel.name.upcase
+  %small
+    %b Url:
+    = @channel.url
+  %br
+  %br
+  %a.btn.btn-success.icon{href: edit_channel_path(@channel)} Edit
+  %a.btn.btn-success.icon{href: new_channel_article_path(@channel)} New article
+  %a.btn.btn-success.icon{href: edit_channel_path(@channel)} Update!
+  
+= render "articles/articles"
+

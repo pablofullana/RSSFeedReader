@@ -14,6 +14,7 @@ class ChannelsController < ApplicationController
   # GET /channels/1
   # GET /channels/1.json
   def show
+    @articles = @channel.articles
   end
 
   # GET /channels/new

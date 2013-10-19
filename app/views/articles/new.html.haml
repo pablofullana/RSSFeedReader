@@ -1,0 +1,6 @@
+%h1 New article
+
+= form_for @article, url: channel_articles_path, html: { method: :post } do |f|
+	= render 'form', f: f
+
+= link_to 'Back', channel_articles_path

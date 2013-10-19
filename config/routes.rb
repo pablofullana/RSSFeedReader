@@ -1,6 +1,10 @@
 RSSFeed::Application.routes.draw do
 
-  resources :channels
+
+
+  resources :channels do
+    resources :articles
+  end
 
   get 'home/about'
   get 'home/index'
