@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :channel do
-    url "url"
-    name "title"
+    url "http://appleinsider.com.feedsportal.com/c/33975/f/616168/index.rss"
+    name "AppleTest"
     user
   end
 end

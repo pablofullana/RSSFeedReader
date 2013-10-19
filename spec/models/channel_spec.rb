@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Channel do
 
   let(:user) { FactoryGirl.create(:user) }
-  before { @channel = user.channels.build(url: "url", name: "name") }
+  before { @channel = user.channels.build(url: "http://appleinsider.com.feedsportal.com/c/33975/f/616168/index.rss", name: "AppleTest") }
 
   subject { @channel }
 
