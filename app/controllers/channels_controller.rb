@@ -75,24 +75,24 @@ class ChannelsController < ApplicationController
 
   
   def fetch_feeds
-    @rss = SimpleRSS.parse open(@channel.url)
-    @rss.items.each do |item|
-      @attributes = {}
-      @attributes[:title] = item.title
-      @attributes[:link] = item.link
-      @attributes[:description] = item.description
-      @attributes[:pub_date] = item.pubDate
-      @attributes[:comments] = "Here is where comments go"
-      @attributes[:starred] = false
-      @attributes[:channel_id] = @channel.id
+    rss = SimpleRSS.parse open(@channel.url)
+    rss.items.each do |item|
+      attributes = {}
+      attributes[:title] = item.title
+      attributes[:link] = item.link
+      attributes[:description] = item.description
+      attributes[:pub_date] = item.pubDate
+      attributes[:comments] = "Here is where comments go"
+      attributes[:starred] = false
+      attributes[:channel_id] = @channel.id
       
       begin
-        @article = Article.create_with(@attributes).find_or_create_by(title: item.title)
+        @article = Article.create_with(attributes).find_or_create_by(title: item.title)
 	    rescue
         # TODO - Define if this will be logged
       end
-      
     end
+    redirect_to channel_path(@channel)
   end
 
 

@@ -8,6 +8,6 @@ FactoryGirl.define do
     pub_date "2013-10-19"
     comments "MyText"
     starred false
-    channel_id 1
+    channel
   end
 end

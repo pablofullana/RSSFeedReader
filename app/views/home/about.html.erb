@@ -1,9 +1,0 @@
-<% require 'rubygems' %>
-<% require 'simple-rss' %>
-<% require 'open-uri' %>
-
-<% rss = SimpleRSS.parse open('http://slashdot.org/index.rdf') %>
-
-<%= rss.channel.title %> <br>
-<%= rss.channel.link %><br>
-<%= rss.items.first.link %>

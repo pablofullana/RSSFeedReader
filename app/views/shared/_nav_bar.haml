@@ -12,10 +12,6 @@
           %li.divider
           %li= link_to 'All channels', channels_path
           %li= link_to 'New channel', new_channel_path
-    - if @channel
-      %ul.nav
-        %li
-          %a{href: "#"}= @channel.name
     %ul.nav.pull-right
       %li.dropdown
         %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}

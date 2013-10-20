@@ -40,17 +40,19 @@
     - if @articles.count > 0
       - @articles.each do |article|
         %li
-          %h1.label.tree-toggler.nav-header= article.title
+          %h1.label.tree-toggler.nav-header= article.title.html_safe
           %ul.nav.nav-list.tree
+            %li
+              %small= link_to article.link, article.link, :target => "_blank"
             %li
               %small= article.pub_date
             %br
             %li
-              = article.description
+              = article.description.html_safe
             %br
             %li
-              = article.comments
-            %br
+              .well
+                = article.comments
             %li
             - if article.starred
               Starred!
@@ -59,10 +61,8 @@
             %br
             %br
             %li
-              %small= link_to article.link, "#"
-            %li
               / TODO - Remove this link
-              %a= link_to 'Remove (just for development purpose)', channel_article_path(article.channel_id, article), :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to 'Remove (just for development purpose)', channel_article_path(article.channel_id, article), :method => :delete, :data => { :confirm => 'Are you sure?' }
             %br
     - else
       There are no articles for this channel

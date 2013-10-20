@@ -7,11 +7,10 @@
 
 .well
 
-  %h4
-    %a{href: "#"}= @channel.name.upcase
-  %small
-    %b Url:
-    = @channel.url
+  %h3
+    = link_to @channel.name.upcase, channel_path(@channel)
+  %b Url:
+  = link_to @channel.url, @channel.url
   %br
   %br
   %a.btn.btn-success.icon{href: edit_channel_path(@channel)} Edit
