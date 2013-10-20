@@ -4,6 +4,9 @@ RSSFeed::Application.routes.draw do
 
   resources :channels do
     resources :articles
+    member do
+      get 'fetch_feeds'
+    end
   end
 
   get 'home/about'

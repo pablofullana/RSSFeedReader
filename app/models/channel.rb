@@ -1,5 +1,6 @@
 require 'net/http'
-require 'feed_validator'
+require 'simple-rss'
+require 'open-uri'
 
 
 
@@ -17,14 +18,8 @@ class Channel < ActiveRecord::Base
 
   def valid_feed
   	begin
-  		res = Net::HTTP.get_response(URI.parse(url.to_s))
-  		if res.code.to_i != 200
-  			errors.add(:url, "Got code " + res.code.to_s)
-  		else
-  		  validator = W3C::FeedValidator.new()
-  		  validator.validate_url(url)
-  		  errors.add(:url, "is not a valid feed") unless validator.valid?
-  		end
+      rss = SimpleRSS.parse open(URI.parse(url.to_s))
+  		errors.add(:url, "is not a valid feed") unless rss.channel.title
   	rescue
   		errors.add(:url, "is not valid")
   	end

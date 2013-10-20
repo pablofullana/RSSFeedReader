@@ -18,6 +18,9 @@
             = f.text_field :name, placeholder: "Name", :autofocus => true
           .field
             = f.label :url
+          - if @type == "new" 
             = f.text_field :url, placeholder: "Url"
+          - else
+            = f.text_field :url, placeholder: "Url", :readonly => true
           %br
           %button.btn-success.btn{type: "submit", id: "Save"} Save

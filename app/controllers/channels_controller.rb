@@ -1,9 +1,12 @@
 class ChannelsController < ApplicationController
 
+  require 'simple-rss'
+  require 'open-uri'
+
   # will only let signed in users pass through
   before_filter :authorize
 
-  before_action :set_channel, only: [:show, :edit, :update, :destroy]
+  before_action :set_channel, only: [:show, :edit, :update, :destroy, :fetch_feeds]
 
   # GET /channels
   # GET /channels.json
@@ -21,11 +24,13 @@ class ChannelsController < ApplicationController
   def new
     @channel = Channel.new
     @title = "New channel"
+    @type = "new"
   end
 
   # GET /channels/1/edit
   def edit
     @title = "Edit channel"
+    @type = "edit"
   end
 
   # POST /channels
@@ -66,6 +71,25 @@ class ChannelsController < ApplicationController
       format.html { redirect_to channels_url }
       format.json { head :no_content }
     end
+  end
+
+  def fetch_feeds
+
+    @rss = SimpleRSS.parse open(@channel.url)
+    
+    @attributes = {}
+    @attributes[:title] = @rss.items.first.title
+    @attributes[:link] = @rss.items.first.title
+    @attributes[:description] = @rss.items.first.description
+    @attributes[:pub_date] = Date.today
+    @attributes[:comments] = "Here is where comments go"
+    @attributes[:starred] = false
+    @attributes[:channel_id] = @channel.id
+
+    @article = Article.new(@attributes)
+
+    @article.save!
+
   end
 
 

@@ -1,0 +1,29 @@
+
+- if alert
+  .alert.alert-error= alert
+- if notice
+  .alert= notice
+
+%h1 Channels#fetch_feeds
+%p Find me in app/views/channels/fetch_feeds.html.haml
+
+%p
+  = @rss.channel.title
+
+- @rss.items.each do |item|
+  %p= item.title
+  %p= item.link
+  %p= raw(item.description)
+  %br
+  %br
+  %br
+  = @article.title
+  = @article.link
+  = @article.description
+  = @article.pub_date
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
