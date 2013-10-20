@@ -61,7 +61,8 @@
             %li
               %small= link_to article.link, "#"
             %li
-              %a= link_to 'Remove', channel_article_path(article.channel_id, article), :method => :delete, :data => { :confirm => 'Are you sure?' }
+              / TODO - Remove this link
+              %a= link_to 'Remove (just for development purpose)', channel_article_path(article.channel_id, article), :method => :delete, :data => { :confirm => 'Are you sure?' }
             %br
     - else
       There are no articles for this channel

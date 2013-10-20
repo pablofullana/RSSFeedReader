@@ -17,7 +17,7 @@ class ChannelsController < ApplicationController
   # GET /channels/1
   # GET /channels/1.json
   def show
-    @articles = @channel.articles
+    @articles = @channel.articles.order("pub_date DESC")
   end
 
   # GET /channels/new
@@ -73,23 +73,26 @@ class ChannelsController < ApplicationController
     end
   end
 
+  
   def fetch_feeds
-
     @rss = SimpleRSS.parse open(@channel.url)
-    
-    @attributes = {}
-    @attributes[:title] = @rss.items.first.title
-    @attributes[:link] = @rss.items.first.title
-    @attributes[:description] = @rss.items.first.description
-    @attributes[:pub_date] = Date.today
-    @attributes[:comments] = "Here is where comments go"
-    @attributes[:starred] = false
-    @attributes[:channel_id] = @channel.id
-
-    @article = Article.new(@attributes)
-
-    @article.save!
-
+    @rss.items.each do |item|
+      @attributes = {}
+      @attributes[:title] = item.title
+      @attributes[:link] = item.link
+      @attributes[:description] = item.description
+      @attributes[:pub_date] = item.pubDate
+      @attributes[:comments] = "Here is where comments go"
+      @attributes[:starred] = false
+      @attributes[:channel_id] = @channel.id
+      
+      begin
+        @article = Article.create_with(@attributes).find_or_create_by(title: item.title)
+	    rescue
+        # TODO - Define if this will be logged
+      end
+      
+    end
   end
 
 
