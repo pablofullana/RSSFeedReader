@@ -5,35 +5,6 @@
       });
   });
 
-
-/ %table
-/   %tr
-/     %th Title
-/     %th Link
-/     %th Description
-/     %th Pub date
-/     %th Comments
-/     %th Starred
-/     %th Channel
-/     %th
-/     %th
-/     %th
-
-/   - @articles.each do |article|
-/     %tr
-/       %td= article.title
-/       %td= article.link
-/       %td= article.description
-/       %td= article.pub_date
-/       %td= article.comments
-/       %td= article.starred
-/       %td= article.channel_id
-/       %td= link_to 'Show', channel_article_path(article.channel_id, article)
-/       %td= link_to 'Edit', edit_channel_article_path(article.channel_id, article)
-/       %td= link_to 'Destroy', channel_article_path(article.channel_id, article), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-/ %br
-
 .well
   %div{style: "overflow-y: scroll; overflow-x: hidden"}
     %ul.nav.nav-list
@@ -41,6 +12,10 @@
       - @articles.each do |article|
         %li
           %h1.label.tree-toggler.nav-header= article.title.html_safe
+          - if article.starred
+            %i.icon-star
+          - else
+            / %i.icon-star-empty
           %ul.nav.nav-list.tree
             %li
               %small= link_to article.link, article.link, :target => "_blank"
@@ -53,13 +28,6 @@
             %li
               .well
                 = article.comments
-            %li
-            - if article.starred
-              Starred!
-            - else
-              Not starred...
-            %br
-            %br
             %li
               / TODO - Remove this link
               = link_to 'Remove (just for development purpose)', channel_article_path(article.channel_id, article), :method => :delete, :data => { :confirm => 'Are you sure?' }
