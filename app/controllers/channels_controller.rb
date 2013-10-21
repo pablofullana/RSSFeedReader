@@ -1,9 +1,6 @@
 class ChannelsController < ApplicationController
 
-  require 'simple-rss'
-  require 'open-uri'
-
-  # will only let signed in users pass through
+  # will let only signed in users pass through
   before_filter :authorize
 
   before_action :set_channel, only: [:show, :edit, :update, :destroy, :fetch_feeds]
@@ -75,23 +72,7 @@ class ChannelsController < ApplicationController
 
   
   def fetch_feeds
-    rss = SimpleRSS.parse open(@channel.url)
-    rss.items.each do |item|
-      attributes = {}
-      attributes[:title] = item.title
-      attributes[:link] = item.link
-      attributes[:description] = item.description
-      attributes[:pub_date] = item.pubDate
-      attributes[:comments] = "Here is where comments go"
-      attributes[:starred] = false
-      attributes[:channel_id] = @channel.id
-      
-      begin
-        @article = Article.create_with(attributes).find_or_create_by(title: item.title)
-	    rescue
-        # TODO - Define if this will be logged
-      end
-    end
+    @channel.fetch_feeds
     redirect_to channel_path(@channel)
   end
 
