@@ -8,7 +8,7 @@
         = devise_error_messages!
         %form{"accept-charset" => "UTF-8", action: "", method: "POST"}
           = f.label :login
-          = f.text_field :login, placeholder: "Login", :autofocus => true, :id => 'login'
+          = f.text_field :login, placeholder: "Login", :id => 'login'
           = f.label :first_name
           = f.text_field :first_name, placeholder: "First Name", :id => 'first_name'
           = f.label :last_name
