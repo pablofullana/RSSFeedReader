@@ -43,6 +43,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 
 gem 'simple-rss'
+gem 'seed_dump'
 
 
 
